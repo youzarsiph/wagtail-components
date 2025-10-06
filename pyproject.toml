@@ -5,7 +5,7 @@ description = "Build websites faster with clean, reusable building blocks."
 authors = ["Yousef Abu Shanab <josephyousef249@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{ include = "app" }]
+packages = [{ include = "wagtail_components" }]
 homepage = "https://github.com/youzarsiph/wagtail-components"
 repository = "https://github.com/youzarsiph/wagtail-components"
 documentation = "https://github.com/youzarsiph/wagtail-components"
