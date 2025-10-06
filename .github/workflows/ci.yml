@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+
+      - name: Install Dependencies
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install --upgrade pip
+          pip install poetry
+          poetry install
+          poetry run django-admin startproject core
+          mv app core
+
+          # Settings
+          echo "'app'," >> core/settings.py
+          echo "'app.apps.home'," >> core/settings.py
+          echo "'app.cms'," >> core/settings.py
+          echo "'app.ui'," >> core/settings.py
+          echo "'rest_wind'," >> core/settings.py
+          echo "'rest_framework'," >> core/settings.py
+          echo "'wagtail.contrib.forms'," >> core/settings.py
+          echo "'wagtail.contrib.redirects'," >> core/settings.py
+          echo "'wagtail.embeds'," >> core/settings.py
+          echo "'wagtail.sites'," >> core/settings.py
+          echo "'wagtail.users'," >> core/settings.py
+          echo "'wagtail.snippets'," >> core/settings.py
+          echo "'wagtail.documents'," >> core/settings.py
+          echo "'wagtail.images'," >> core/settings.py
+          echo "'wagtail.search'," >> core/settings.py
+          echo "'wagtail.admin'," >> core/settings.py
+          echo "'wagtail'," >> core/settings.py
+          echo "'modelcluster'," >> core/settings.py
+          echo "'taggit'," >> core/settings.py
+          echo "]" >> core/settings.py
+
+          # URLConf
+          echo "from django.urls import include" >> core/urls.py
+          echo "urlpatterns += [path('', include('app.ui.urls')), path('api/', include('app.api.urls')),]" >> core/urls.py
+
+      - name: Run the app
+        run: |
+          source .venv/bin/activate
+          poetry run python core/manage.py migrate
+          poetry run python core/manage.py check
+          poetry run python core/manage.py test
