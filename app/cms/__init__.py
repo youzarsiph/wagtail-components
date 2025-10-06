@@ -1,1 +1,0 @@
-"""Wagtail CMS related code"""

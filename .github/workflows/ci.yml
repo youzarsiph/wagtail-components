@@ -25,15 +25,11 @@ jobs:
           pip install poetry
           poetry install
           poetry run django-admin startproject core
-          mv app core
+          mv wagtail_components core
 
           # Settings
-          echo "'app'," >> core/settings.py
-          echo "'app.apps.home'," >> core/settings.py
-          echo "'app.cms'," >> core/settings.py
-          echo "'app.ui'," >> core/settings.py
-          echo "'rest_wind'," >> core/settings.py
-          echo "'rest_framework'," >> core/settings.py
+          echo "INSTALLED_APPS += [" >> core/settings.py
+          echo "'wagtail_components'," >> core/settings.py
           echo "'wagtail.contrib.forms'," >> core/settings.py
           echo "'wagtail.contrib.redirects'," >> core/settings.py
           echo "'wagtail.embeds'," >> core/settings.py
@@ -48,10 +44,6 @@ jobs:
           echo "'modelcluster'," >> core/settings.py
           echo "'taggit'," >> core/settings.py
           echo "]" >> core/settings.py
-
-          # URLConf
-          echo "from django.urls import include" >> core/urls.py
-          echo "urlpatterns += [path('', include('app.ui.urls')), path('api/', include('app.api.urls')),]" >> core/urls.py
 
       - name: Run the app
         run: |

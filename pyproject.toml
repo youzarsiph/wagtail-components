@@ -1,23 +1,19 @@
 [tool.poetry]
-name = "wagtail-app"
+name = "wagtail-components"
 version = "0.1.0"
 description = "A Wagtail CMS app template with dependency management and DevOps best practices."
 authors = ["Yousef Abu Shanab <josephyousef249@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [{ include = "app" }]
-homepage = "https://github.com/youzarsiph/wagtail-app"
-repository = "https://github.com/youzarsiph/wagtail-app"
-documentation = "https://github.com/youzarsiph/wagtail-app"
+homepage = "https://github.com/youzarsiph/wagtail-components"
+repository = "https://github.com/youzarsiph/wagtail-components"
+documentation = "https://github.com/youzarsiph/wagtail-components"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-django = "^5.2.1"
-djangorestframework = ">=3.16.0"
-drf-restwind = ">=0.2.0"
+django = "^5.2.2"
 wagtail = ">=7.0"
-wagtail-tw-blocks = ">=0.2.4"
-
 
 [tool.poetry.group.dev.dependencies]
 django-debug-toolbar = ">=6.0.0"
