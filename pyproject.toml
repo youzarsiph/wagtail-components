@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "wagtail-components"
 version = "0.1.0"
-description = "A Wagtail CMS app template with dependency management and DevOps best practices."
+description = "Build websites faster with clean, reusable building blocks."
 authors = ["Yousef Abu Shanab <josephyousef249@gmail.com>"]
 license = "MIT"
 readme = "README.md"
